@@ -13,33 +13,33 @@ public class CalculosController {
 
     // Método para calcular la cuota mensual
     @PostMapping("/cuotaMensual")
-    public int calcularCuotaMensual(@RequestParam double monto, @RequestParam int plazo, @RequestParam String tipoCredito) {
-        return calculosService.calcularCuotaMensual(monto, plazo, tipoCredito);
+    public int calcularCuotaMensual(@RequestParam int monto, @RequestParam int plazo, @RequestParam double interes) {
+        return calculosService.calcularCuotaMensual(monto, plazo, interes);
     }
 
     // Método para calcular el seguro desgravamen
     @PostMapping("/seguroDesgravamen")
-    public int calcularSeguroDesgravamen(@RequestParam double monto) {
+    public int calcularSeguroDesgravamen(@RequestParam int monto) {
         return calculosService.calcularSeguroDesgravamen(monto);
     }
 
     // Método para calcular la comisión de administración
     @PostMapping("/comisionAdministracion")
-    public int calcularComisionAdministracion(@RequestParam double monto) {
+    public int calcularComisionAdministracion(@RequestParam int monto) {
         return calculosService.calcularComisionAdministracion(monto);
     }
 
     // Método para calcular el costo mensual (cuota + seguros)
     @PostMapping("/costoMensual")
-    public int calcularCostoMensual(@RequestParam double monto, @RequestParam int plazo, @RequestParam String tipoCredito) {
-        int cuotaMensual = calculosService.calcularCuotaMensual(monto, plazo, tipoCredito);
+    public int calcularCostoMensual(@RequestParam int monto, @RequestParam int plazo, @RequestParam double interes) {
+        int cuotaMensual = calculosService.calcularCuotaMensual(monto, plazo, interes);
         return calculosService.calcularCostoMensual(cuotaMensual, monto);
     }
 
     // Método para calcular el costo total del préstamo
     @PostMapping("/costoTotal")
-    public int calcularCostoTotal(@RequestParam double monto, @RequestParam int plazo, @RequestParam String tipoCredito) {
-        int cuotaMensual = calculosService.calcularCuotaMensual(monto, plazo, tipoCredito);
+    public int calcularCostoTotal(@RequestParam int monto, @RequestParam int plazo, @RequestParam double interes) {
+        int cuotaMensual = calculosService.calcularCuotaMensual(monto, plazo, interes);
         return calculosService.calcularCostoTotal(cuotaMensual, monto, plazo);
     }
 }
