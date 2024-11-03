@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 @Service
 public class EjecutivoService {
     @Autowired
-    private SolicitudService solicitudService;
-    @Autowired
     private SolicitudRepository solicitudRepository;
 
     String contraseñaEjecutivos = "2024";
